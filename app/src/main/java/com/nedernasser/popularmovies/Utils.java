@@ -1,0 +1,60 @@
+package com.nedernasser.popularmovies;
+
+import android.support.annotation.NonNull;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Utils {
+    private static final String LOG_TAG = MovieCollection.class.getSimpleName();
+    private static final String statusError = "status_code";
+    private static final String movies = "results";
+    private static final String posterKey = "poster_path";
+    private static final String overviewKey = "overview";
+    private static final String releaseDateKey = "release_date";
+    private static final String titleKey = "title";
+    private static final String idKey = "id";
+    private static final String voteAverageKey = "vote_average";
+
+    public static MovieCollection parseJson(String json)
+            throws JSONException {
+        JSONObject responseJson = new JSONObject(json);
+        if (responseJson.has(statusError)) {
+            int errorCode = responseJson.getInt(statusError);
+            Log.e(LOG_TAG, "parse json movies error code: " + String.valueOf(errorCode));
+        }
+        JSONArray moviesArray = responseJson.getJSONArray(movies);
+        List<Movie> movieList = parseMovieList(moviesArray);
+        MovieCollection movieCollection = new MovieCollection();
+        movieCollection.setMovies(movieList);
+        return movieCollection;
+    }
+
+    @NonNull
+    private static List<Movie> parseMovieList(JSONArray moviesArray) throws JSONException {
+        List<Movie> movieList = new ArrayList<>();
+        for (int i = 0; i < moviesArray.length(); i++) {
+            JSONObject movie = moviesArray.getJSONObject(i);
+            Movie currentMovie = parseMovie(movie);
+            movieList.add(currentMovie);
+        }
+        return movieList;
+    }
+
+    @NonNull
+    private static Movie parseMovie(JSONObject movie) throws JSONException {
+        Movie currentMovie = new Movie();
+        currentMovie.setPosterPath(movie.getString(posterKey));
+        currentMovie.setOverview(movie.getString(overviewKey));
+        currentMovie.setReleaseDate(movie.getString(releaseDateKey));
+        currentMovie.setTitle(movie.getString(titleKey));
+        currentMovie.setId(movie.getInt(idKey));
+        currentMovie.setVoteAverage(movie.getLong(voteAverageKey));
+        return currentMovie;
+    }
+}
