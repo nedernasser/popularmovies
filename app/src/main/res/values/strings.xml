@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+
+    <string name="filter_popular">Popular</string>
+
+    <string name="filter_top_rated">Top Rated</string>
+
+    <string name="release_date">Release date: %s</string>
+
+    <string name="vote_average">Vote average:</string>
+
+    <string name="reviews_title">Reviews</string>
+
+    <string name="button_play_trailer">Play Trailer</string>
+
+    <string name="by_author_review">by %s</string>
+
+    <string name="details_activity_name">Movie Details</string>
+
+    <string name="trailer_title">Trailers</string>
+
+    <string name="synopsis_title">Synopsis</string>
+
+    <string name="filter_favorites">Favorites</string>
+
+    <string name="trailer_type">Trailer</string>
+
+    <string name="trailer_site_youtube">YouTube</string>
+</resources>
