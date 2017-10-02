@@ -3,6 +3,7 @@ package com.nedernasser.popularmovies;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -33,12 +34,16 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-//        if (savedInstanceState == null) {
-//            setMovieAdapterPopular();
-//        } else {
-//            loadAdapterPerOptionSelected(
-//                    savedInstanceState.getInt("optionSelected", R.id.action_popular));
-//        }
+        GridLayoutManager layoutManager = new GridLayoutManager(this, getSpan());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        if (savedInstanceState == null) {
+            setMovieAdapterPopular();
+        } else {
+            loadAdapterPerOptionSelected(
+                    savedInstanceState.getInt("optionSelected", R.id.action_popular));
+        }
     }
 
     @Override
