@@ -79,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setMovieAdapterFavorites() {
-//        FavoritesAdapter favoritesAdapter = new FavoritesAdapter();
-//        recyclerView.setAdapter(favoritesAdapter);
-//        getSupportLoaderManager().initLoader(
-//                ID_FAVORITES_LOADER, null, new FavoritesCursorLoader(this, favoritesAdapter));
+        FavoritesAdapter favoritesAdapter = new FavoritesAdapter();
+        recyclerView.setAdapter(favoritesAdapter);
+        getSupportLoaderManager().initLoader(
+                ID_FAVORITES_LOADER, null, new FavoritesLoader(this, favoritesAdapter));
     }
 
     private void setMovieAdapterTopRated() {

@@ -19,7 +19,7 @@ public class FetchMoviesTask extends AsyncTask<String, Void, List<Movie>> {
         try {
             String jsonMoviesResponse = NetworkUtils
                     .getResponseFromHttpUrl(moviesRequestUrl);
-            MovieCollection movieCollection = Utils.parseJson(jsonMoviesResponse);
+            MovieCollection movieCollection = Utils.parseJsonMovie(jsonMoviesResponse);
             return movieCollection.getMovies();
         } catch (Exception e) {
             e.printStackTrace();
