@@ -1,9 +1,12 @@
 package com.nedernasser.popularmovies;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,8 +15,12 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static butterknife.ButterKnife.*;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -54,7 +61,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        ButterKnife.bind(this);
+        bind(this);
         Bundle data = getIntent().getExtras();
         final Movie movie = data.getParcelable("movieDetails");
         setMovieDetails(movie);
@@ -130,45 +137,45 @@ public class DetailActivity extends AppCompatActivity {
                         getResources().getString(R.string.release_date), movie.getReleaseDate()));
         textDetailsSynopsis.setText(movie.getOverview());
         ratingBar.setRating(movie.getVoteAverage());
-//        new FetchTrailersTask(String.valueOf(movie.getId())) {
-//            @Override
-//            protected void onPostExecute(List<Trailer> trailers) {
-//                addTrailersToLayout(trailers);
-//            }
-//        }.execute();
-//        new FetchReviewsTask(String.valueOf(movie.getId())) {
-//            @Override
-//            protected void onPostExecute(List<Review> reviews) {
-//                addReviewsToLayout(reviews);
-//            }
-//        }.execute();
+        new FetchTrailersTask(String.valueOf(movie.getId())) {
+            @Override
+            protected void onPostExecute(List<Trailer> trailers) {
+                addTrailersToLayout(trailers);
+            }
+        }.execute();
+        new FetchReviewsTask(String.valueOf(movie.getId())) {
+            @Override
+            protected void onPostExecute(List<Review> reviews) {
+                addReviewsToLayout(reviews);
+            }
+        }.execute();
 
     }
 
-//    private void addTrailersToLayout(List<Trailer> trailers) {
-//        if (trailers != null && !trailers.isEmpty()) {
-//            for (Trailer trailer : trailers) {
-//                if (trailer.getType().equals(getString(R.string.trailer_type)) &&
-//                        trailer.getSite().equals(getString(R.string.trailer_site_youtube))) {
-//                    View view = getTrailerView(trailer);
-//                    linearLayoutTrailers.addView(view);
-//                }
-//            }
-//        } else {
-//            hideTrailersSection();
-//        }
-//    }
-//
-//    private void addReviewsToLayout(List<Review> reviews) {
-//        if (reviews != null && !reviews.isEmpty()) {
-//            for (Review review : reviews) {
-//                View view = getReviewView(review);
-//                linearLayoutReviews.addView(view);
-//            }
-//        } else {
-//            hideReviewsSection();
-//        }
-//    }
+    private void addTrailersToLayout(List<Trailer> trailers) {
+        if (trailers != null && !trailers.isEmpty()) {
+            for (Trailer trailer : trailers) {
+                if (trailer.getType().equals(getString(R.string.trailer_type)) &&
+                        trailer.getSite().equals(getString(R.string.trailer_site_youtube))) {
+                    View view = getTrailerView(trailer);
+                    linearLayoutTrailers.addView(view);
+                }
+            }
+        } else {
+            hideTrailersSection();
+        }
+    }
+
+    private void addReviewsToLayout(List<Review> reviews) {
+        if (reviews != null && !reviews.isEmpty()) {
+            for (Review review : reviews) {
+                View view = getReviewView(review);
+                linearLayoutReviews.addView(view);
+            }
+        } else {
+            hideReviewsSection();
+        }
+    }
 
     private void hideTrailersSection() {
         textTrailerTitle.setVisibility(View.GONE);
@@ -180,38 +187,38 @@ public class DetailActivity extends AppCompatActivity {
         linearLayoutReviews.setVisibility(View.GONE);
     }
 
-//    private View getTrailerView(final Trailer trailer) {
-//        LayoutInflater inflater = LayoutInflater.from(DetailsActivity.this);
-//        View view = inflater.inflate(R.layout.trailer_list_item, linearLayoutTrailers, false);
-//        TextView trailerNameTextView = ButterKnife.findById(view, R.id.text_trailer_item_name);
-//        trailerNameTextView.setText(trailer.getName());
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Intent.ACTION_VIEW);
-//                intent.setData(Uri.parse(NetworkUtils.buildYouTubeUrl(trailer.getKey())));
-//                startActivity(intent);
-//            }
-//        });
-//        return view;
-//    }
-//
-//    private View getReviewView(final Review review) {
-//        LayoutInflater inflater = LayoutInflater.from(DetailsActivity.this);
-//        View view = inflater.inflate(R.layout.review_list_item, linearLayoutReviews, false);
-//        TextView contentTextView = ButterKnife.findById(view, R.id.text_content_review);
-//        TextView authorTextView = ButterKnife.findById(view, R.id.text_author_review);
-//        authorTextView.setText(getString(R.string.by_author_review, review.getAuthor()));
-//        contentTextView.setText(review.getContent());
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String url = review.getUrl();
-//                Intent intent = new Intent(Intent.ACTION_VIEW);
-//                intent.setData(Uri.parse(url));
-//                startActivity(intent);
-//            }
-//        });
-//        return view;
-//    }
+    private View getTrailerView(final Trailer trailer) {
+        LayoutInflater inflater = LayoutInflater.from(DetailActivity.this);
+        View view = inflater.inflate(R.layout.list_item_trailer, linearLayoutTrailers, false);
+        TextView trailerNameTextView = findById(view, R.id.text_trailer_item_name);
+        trailerNameTextView.setText(trailer.getName());
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(NetworkUtils.buildYouTubeUrl(trailer.getKey())));
+                startActivity(intent);
+            }
+        });
+        return view;
+    }
+
+    private View getReviewView(final Review review) {
+        LayoutInflater inflater = LayoutInflater.from(DetailActivity.this);
+        View view = inflater.inflate(R.layout.list_item_review, linearLayoutReviews, false);
+        TextView contentTextView = findById(view, R.id.text_content_review);
+        TextView authorTextView = findById(view, R.id.text_author_review);
+        authorTextView.setText(getString(R.string.by_author_review, review.getAuthor()));
+        contentTextView.setText(review.getContent());
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = review.getUrl();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+        return view;
+    }
 }
