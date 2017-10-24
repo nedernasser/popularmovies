@@ -18,6 +18,7 @@
     <string name="details_activity_name">Movie Details</string>
 
     <string name="trailer_title">Trailers</string>
+    <string name="trailer_image">Play</string>
 
     <string name="synopsis_title">Synopsis</string>
 
@@ -27,4 +28,7 @@
 
     <string name="trailer_site_youtube">YouTube</string>
     <string name="image_movie">Image Movie</string>
+
+    <string name="texto_offline">Without Network?</string>
+    <string name="retry">TRY AGAIN</string>
 </resources>
