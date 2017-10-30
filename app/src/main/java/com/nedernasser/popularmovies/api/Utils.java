@@ -1,7 +1,14 @@
-package com.nedernasser.popularmovies;
+package com.nedernasser.popularmovies.api;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
+
+import com.nedernasser.popularmovies.data.Movie;
+import com.nedernasser.popularmovies.data.MovieCollection;
+import com.nedernasser.popularmovies.data.Review;
+import com.nedernasser.popularmovies.data.ReviewCollection;
+import com.nedernasser.popularmovies.data.Trailer;
+import com.nedernasser.popularmovies.data.TrailerCollection;
 
 import org.json.JSONArray;
 import org.json.JSONException;

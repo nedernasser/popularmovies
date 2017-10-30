@@ -1,4 +1,4 @@
-package com.nedernasser.popularmovies;
+package com.nedernasser.popularmovies.api;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

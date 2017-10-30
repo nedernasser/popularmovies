@@ -1,6 +1,10 @@
-package com.nedernasser.popularmovies;
+package com.nedernasser.popularmovies.api;
 
 import android.os.AsyncTask;
+
+import com.nedernasser.popularmovies.BuildConfig;
+import com.nedernasser.popularmovies.data.Trailer;
+import com.nedernasser.popularmovies.data.TrailerCollection;
 
 import java.net.URL;
 import java.util.List;

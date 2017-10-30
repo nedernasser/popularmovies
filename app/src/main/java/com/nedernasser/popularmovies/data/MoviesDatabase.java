@@ -1,4 +1,4 @@
-package com.nedernasser.popularmovies;
+package com.nedernasser.popularmovies.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

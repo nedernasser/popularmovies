@@ -11,6 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.nedernasser.popularmovies.api.FetchMoviesTask;
+import com.nedernasser.popularmovies.api.NetworkUtils;
+import com.nedernasser.popularmovies.data.FavoritesLoader;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

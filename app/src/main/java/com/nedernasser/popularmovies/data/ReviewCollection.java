@@ -1,4 +1,4 @@
-package com.nedernasser.popularmovies;
+package com.nedernasser.popularmovies.data;
 
 import java.util.List;
 

@@ -13,12 +13,19 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.nedernasser.popularmovies.api.FetchReviewsTask;
+import com.nedernasser.popularmovies.api.FetchTrailersTask;
+import com.nedernasser.popularmovies.api.NetworkUtils;
+import com.nedernasser.popularmovies.data.Movie;
+import com.nedernasser.popularmovies.data.MoviesContract;
+import com.nedernasser.popularmovies.data.MoviesDatabase;
+import com.nedernasser.popularmovies.data.Review;
+import com.nedernasser.popularmovies.data.Trailer;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import static butterknife.ButterKnife.*;
 

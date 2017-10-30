@@ -1,6 +1,10 @@
-package com.nedernasser.popularmovies;
+package com.nedernasser.popularmovies.api;
 
 import android.os.AsyncTask;
+
+import com.nedernasser.popularmovies.BuildConfig;
+import com.nedernasser.popularmovies.data.Review;
+import com.nedernasser.popularmovies.data.ReviewCollection;
 
 import java.net.URL;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.nedernasser.popularmovies;
+package com.nedernasser.popularmovies.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;

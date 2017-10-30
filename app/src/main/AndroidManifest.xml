@@ -32,7 +32,7 @@
         </activity>
         <provider
             android:authorities="com.nedernasser.popularmovies"
-            android:name="com.nedernasser.popularmovies.MoviesProvider"
+            android:name="com.nedernasser.popularmovies.data.MoviesProvider"
             android:exported="false" />
     </application>
 

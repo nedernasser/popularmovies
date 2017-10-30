@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.nedernasser.popularmovies.api.NetworkUtils;
+import com.nedernasser.popularmovies.data.Movie;
+import com.nedernasser.popularmovies.data.MoviesContract;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;

@@ -1,10 +1,12 @@
-package com.nedernasser.popularmovies;
+package com.nedernasser.popularmovies.data;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.nedernasser.popularmovies.R;
 
 public class MainActivityFragment extends Fragment {
 
