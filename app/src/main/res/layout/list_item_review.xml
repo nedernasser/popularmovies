@@ -18,7 +18,7 @@
         android:ellipsize="end"
         android:maxLines="5"
         android:textStyle="italic"
-        tools:text="This movie is amazing! I recommend it!" />
+        tools:text="@string/text_review" />
 
     <TextView
         android:id="@+id/text_author_review"
@@ -29,6 +29,6 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/text_content_review"
         android:layout_gravity="right"
-        tools:text="Dr. Google" />
+        tools:text="@string/author_review" />
 
 </RelativeLayout>

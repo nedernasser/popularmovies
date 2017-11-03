@@ -31,4 +31,7 @@
 
     <string name="texto_offline">Without Network?</string>
     <string name="retry">TRY AGAIN</string>
+
+    <string name="text_review">This movie is amazing! I recommend it!</string>
+    <string name="author_review">Dr. Google</string>
 </resources>

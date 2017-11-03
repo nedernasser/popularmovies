@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -70,8 +72,12 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         bind(this);
         Bundle data = getIntent().getExtras();
+
+        //selectedOption = data.getParcelable("selectedOption");
+
         final Movie movie = data.getParcelable("movieDetails");
         setMovieDetails(movie);
+
         dbHelper = new MoviesDatabase(this);
         if (checkIfMovieIsInDb(movie)) {
             changeToFilledFavIcon();
@@ -88,6 +94,19 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void deleteMovieFromDb(Movie movie) {

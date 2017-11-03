@@ -3,6 +3,7 @@ package com.nedernasser.popularmovies.api;
 import android.os.AsyncTask;
 
 import com.nedernasser.popularmovies.BuildConfig;
+import com.nedernasser.popularmovies.R;
 import com.nedernasser.popularmovies.data.Movie;
 import com.nedernasser.popularmovies.data.MovieCollection;
 import com.nedernasser.popularmovies.MoviesAdapter;
@@ -13,6 +14,7 @@ import java.util.List;
 public class FetchMoviesTask extends AsyncTask<String, Void, List<Movie>> {
 
     private MoviesAdapter adapter;
+
 
     public FetchMoviesTask(MoviesAdapter adapter) {
         this.adapter = adapter;

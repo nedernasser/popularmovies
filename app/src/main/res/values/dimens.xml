@@ -5,4 +5,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="activity_review_padding">8dp</dimen>
+
+    <dimen name="padding_16">16dp</dimen>
 </resources>

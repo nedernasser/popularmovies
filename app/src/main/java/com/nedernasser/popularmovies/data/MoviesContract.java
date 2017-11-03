@@ -1,5 +1,6 @@
 package com.nedernasser.popularmovies.data;
 
+import android.content.ContentResolver;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
@@ -23,6 +24,11 @@ public class MoviesContract {
         public static final String COLUMN_MOVIE_POSTER_PATH = "moviePosterPath";
         public static final String COLUMN_MOVIE_RELEASE_DATE = "movieReleaseDate";
         public static final String COLUMN_MOVIE_VOTE_AVERAGE = "movieVoteAverage";
+
+        public static final String CONTENT_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + AUTHORITY + "/" + TABLE_NAME;
+        public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + AUTHORITY + "/" + TABLE_NAME;
 
         public static final String CREATE_TABLE_MOVIES = "CREATE TABLE " +
                 MoviesEntry.TABLE_NAME + "(" +

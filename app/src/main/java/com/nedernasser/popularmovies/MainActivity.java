@@ -1,5 +1,6 @@
 package com.nedernasser.popularmovies;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -20,8 +21,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String LOG_TAG = MainActivity.class.getSimpleName();
-    private int selectedOption = R.id.action_popular;
+    public int selectedOption = R.id.action_popular;
     private static final String FILTER1 = "popular";
     private static final String FILTER2 = "top_rated";
     private MoviesAdapter moviesAdapter;
@@ -44,8 +44,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
+        Bundle data = getIntent().getExtras();
+        if (data != null) {
+            final int currentFilter = data.getParcelable("selectedOption");
+        }
+
         if (savedInstanceState == null) {
-            setMovieAdapterPopular();
+            setMoviesAdapter();
         } else {
             loadAdapterPerOptionSelected(
                     savedInstanceState.getInt("optionSelected", R.id.action_popular));
@@ -100,14 +105,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setMovieAdapterFavorites() {
-        if (NetworkUtils.isNetworkConnected(this)) {
-            FavoritesAdapter favoritesAdapter = new FavoritesAdapter();
-            recyclerView.setAdapter(favoritesAdapter);
-            getSupportLoaderManager().initLoader(
-                    ID_FAVORITES_LOADER, null, new FavoritesLoader(this, favoritesAdapter));
-        } else {
-            generateSnackBarMessage();
-        }
+        FavoritesAdapter favoritesAdapter = new FavoritesAdapter();
+        recyclerView.setAdapter(favoritesAdapter);
+        getSupportLoaderManager().initLoader(
+                ID_FAVORITES_LOADER, null, new FavoritesLoader(this, favoritesAdapter));
     }
 
     private void setMovieAdapterTopRated() {
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             moviesAdapter = new MoviesAdapter();
             FetchMoviesTask moviesTask = new FetchMoviesTask(moviesAdapter);
             recyclerView.setAdapter(moviesAdapter);
-            moviesTask.execute(FILTER2);
+            moviesTask.execute(FILTER2, Integer.toString(R.id.action_popular));
         } else {
             generateSnackBarMessage();
         }
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             moviesAdapter = new MoviesAdapter();
             FetchMoviesTask moviesTask = new FetchMoviesTask(moviesAdapter);
             recyclerView.setAdapter(moviesAdapter);
-            moviesTask.execute(FILTER1);
+            moviesTask.execute(FILTER1, Integer.toString(R.id.action_top_rated));
         } else {
             generateSnackBarMessage();
         }
