@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String FILTER2 = "top_rated";
     private MoviesAdapter moviesAdapter;
     public static final int ID_FAVORITES_LOADER = 17;
+    private static final int spanCountPortrait = 2;
+    private static final int spanCountLandscape = 4;
 
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
@@ -43,11 +45,6 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this, getSpan());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-
-        Bundle data = getIntent().getExtras();
-        if (data != null) {
-            final int currentFilter = data.getParcelable("selectedOption");
-        }
 
         if (savedInstanceState == null) {
             setMoviesAdapter();
@@ -84,11 +81,9 @@ public class MainActivity extends AppCompatActivity {
     private void setMoviesAdapter() {
         if (selectedOption == R.id.action_popular) {
             setMovieAdapterPopular();
-        }
-        if (selectedOption == R.id.action_top_rated) {
+        } else if (selectedOption == R.id.action_top_rated) {
             setMovieAdapterTopRated();
-        }
-        if (selectedOption == R.id.action_favorites) {
+        } else if (selectedOption == R.id.action_favorites) {
             setMovieAdapterFavorites();
         }
     }
@@ -135,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
 
     private int getSpan() {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            return 4;
+            return spanCountLandscape;
         }
-        return 2;
+        return spanCountPortrait;
     }
 }

@@ -10,8 +10,8 @@
     android:padding="@dimen/padding_16">
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/image_trailer_size"
+        android:layout_height="@dimen/image_trailer_size"
         android:src="@drawable/ic_play_arrow_black_24dp"
         android:contentDescription="@string/trailer_image"/>
 

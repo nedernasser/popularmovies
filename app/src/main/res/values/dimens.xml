@@ -7,4 +7,6 @@
     <dimen name="activity_review_padding">8dp</dimen>
 
     <dimen name="padding_16">16dp</dimen>
+
+    <dimen name="image_trailer_size">40dp</dimen>
 </resources>
